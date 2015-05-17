@@ -37,7 +37,7 @@
 - (void)startDownload:(id)sender {
     
     NSLog(@"Start download");
-    NSURL *URL = [NSURL URLWithString:@"http://192.168.1.254/CAM/PHOTO/2014_0101_000825_001.JPG"];//Input your File RUL.
+    NSURL *URL = [NSURL URLWithString:@"http://192.168.1.254/CAM/PHOTO/2014_0101_000825_001.JPG"];//Input your File URL.
     [downloadFileObject downloadFileWithFileURL:URL];
 }
 
