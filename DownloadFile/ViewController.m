@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "DownloadFileObject.h"
+#import <AFNetworking/UIKit+AFNetworking.h>
 
 @interface ViewController () <DownloadFileObjectDelegate>
 
@@ -26,6 +27,14 @@
     [self.downloadButton addTarget:self
                             action:@selector(startDownload:)
                   forControlEvents:UIControlEventTouchUpInside];
+    
+    [self initDownloadProgressView];
+}
+
+- (void)initDownloadProgressView {
+    
+    [self.downloadProgressView setHidden:YES];
+    [self.downloadProgressView setProgress:0 animated:NO];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,14 +46,17 @@
 - (void)startDownload:(id)sender {
     
     NSLog(@"Start download");
-    NSURL *URL = [NSURL URLWithString:@"http://192.168.1.254/CAM/PHOTO/2015_0515_144623_001.JPG"];//Input your File URL.
-    [downloadFileObject downloadFileWithFileURL:URL];
+    NSURL *URL = [NSURL URLWithString:@"http://jgospel.net/media/35878/.118134.bt.jpg"];//Input your File URL.
+    NSURLSessionDownloadTask *downloadTask = [downloadFileObject downloadFileWithFileURL:URL];
+    [self.downloadProgressView setHidden:NO];
+    [self.downloadProgressView setProgressWithDownloadProgressOfTask:downloadTask animated:YES];
 }
 
 - (void)downloadFileObject:(DownloadFileObject *)downloadFileObject didDownloadFileWithLocalFilePath:(NSURL *)localFilePath error:(NSError *)error {
     
     if (error == nil) {
         NSLog(@"Download file success");
+        [self initDownloadProgressView];
         [self shareWithFilePath:localFilePath];
     }else {
         NSLog(@"Download file error: %@", error);
@@ -68,6 +80,11 @@
         }
     }];
     [self presentViewController:activityViewController animated:YES completion:nil];
+}
+
+- (void)shareImageWithFileUrl:(NSURL *)fileUrl {
+    
+    
 }
 
 @end

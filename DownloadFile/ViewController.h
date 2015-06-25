@@ -11,6 +11,7 @@
 @interface ViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIButton *downloadButton;
+@property (weak, nonatomic) IBOutlet UIProgressView *downloadProgressView;
 
 @end
 

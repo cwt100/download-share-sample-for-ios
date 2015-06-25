@@ -19,7 +19,7 @@
  * @brief Download file.
  * @param fileURL The value of NSURL, ex: @"http://192.168.1.254/CAM/PHOTO/123.JPG".
  */
-- (void)downloadFileWithFileURL:(NSURL *)fileURL;
+- (NSURLSessionDownloadTask *)downloadFileWithFileURL:(NSURL *)fileURL;
 
 @end
 

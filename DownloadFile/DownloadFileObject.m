@@ -10,7 +10,7 @@
 
 @implementation DownloadFileObject
 
-- (void)downloadFileWithFileURL:(NSURL *)fileURL {
+- (NSURLSessionDownloadTask *)downloadFileWithFileURL:(NSURL *)fileURL {
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
@@ -24,6 +24,7 @@
         [self.delegate downloadFileObject:self didDownloadFileWithLocalFilePath:filePath error:error];
     }];
     [downloadTask resume];
+    return downloadTask;
 }
 
 @end
